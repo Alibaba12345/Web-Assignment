@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title> Developer Support </title> 
+	<link class = "page" rel="stylesheet" type="text/css" href="stylesheet.css">
+
+</head>
+<body>
+
+
+	<div class="content">
+		<nav>
+			<a href="index.html" class = "page"> Home</a> |
+			<a href="usersupport.html" class = "page"> User Support </a> |
+			<span class = "page"> Developer Support </span> 
+
+		</nav>
+	</div>
+
+	<div class = "content">
+		<h1>Adding a New Brush</h1>
+		
+		<ul>
+			
+			<li><a class = "link" href="">Adding a New Brush</a></li>
+			<p>If we want to add the new brush to the FlashPhoto, we have to create a new brush tool .cpp and a new brush tool .h. The structure of this function that will be the same the structure of the Pen, Highlighter, Eraser and so on. We just change a little bit to convinience with the tool that we want to create it. For example, we have the code of the Pen tool like that</p>
+			<p>#include "TPen.h"   <br>
+               #include "MConstant.h"<br>
+
+                   TPen::TPen() <br>
+               {<br>
+	         m_mask = new MConstant(1.0, 1.0);<br>
+           }<br>
+
+             std::string TPen::getName() <br>
+           {
+	          return "Pen";<br>
+               }<br></p>
+
+            <p>#ifndef TPEN_H<br>
+               #define TPEN_H<br>
+
+               #include "Tool.h"<br>
+
+               class TPen : public Tool <br>
+              {<br>
+               public:<br>
+	              TPen();<br>
+
+	           std::string getName() ;<br>
+              };<br>
+
+                 #endif<br>
+</p>
+            <p>With Pen tool, we have to create the MConstant.cpp and MConstant.h to run for the Pen tool. With the new brush that we want to add to the paint program, we do the same like the Pen tool depanding on what specific tool we want to write about. </p>
+
+            <p>After that, we will define the new brush tool in the ToolFactory.cpp. We will name the new brush tool in the Tool* ToolFactory::createTool(int toolID). That is some information to add the new brush to the project.</p>
+
+		</ul>
+
+	
+	</div>
+
+	<div class = "footer">
+		<!-- You can change the copyright! -->
+		<span class="copyright">&copy; 2015, CSCI 3081 Guru</span> 
+	</div>
+
+
+</body>
+</html>

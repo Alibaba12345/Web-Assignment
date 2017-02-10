@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title> Tutorial 1 </title> 
+	<link class = "page" rel="stylesheet" type="text/css" href="stylesheet.css">
+
+</head>
+<body>
+
+
+	<div class="content">
+		<nav>
+			<a href="index.html" class = "page"> Home </a> |
+			<a href="usersupport.html" class = "page"> User Support </a> |
+			<a href="developersupport.html" class = "page"> Developer Support</a>
+		</nav>
+	</div>
+
+	<div class = "content">
+		<h1>Tutorial 1(FlashPhoto)</h1>
+
+	    <p> Image Loading and Saving, we could load and save the PNG and the JPG files. We had to wrote a functionality loadImageToCanvas I've implemented the JPEG load code now we had to use the libpng to write code to load the PNG file. We didn’t forget to include png.h and jpeglib.h. If we forgot those steps, the project ran the result that we didn’t expect to see. We had to write down a separate code to load the images. When we did the compiling, we had to change some code in the Makefile. For instance, we had to change the GLUI to the “glui”, GLUI_PATH to the “./glui/” and the GLUI_LIB to the “libglui.a”. We had to do that with the Makefile to let C++ compiler could find the directory of the header file for the PNG and JPG library were located. At that time, we could compile the files, and ran the project.
+</p>
+       <p>With the Image Filter, we could be blur, sharpen and adjust saturation levels in the photographs. For Blur, we could change the number up and down to see the image with more clarity. For Sharpen, we did the same as the Blur function. We could change the number up and down to see the image more clearly. For Edge Detection, we could make the image brighter or darker when we adjusted the number up and down on the tools. For the Motion Blur, we used the amount specified in the GLUI input as the distance of effect a pixel has in each direction. For this iteration2, we could create four more groups of the filters such as Threshold, Adjust Saturation, Adjust R, G, B levels, Quantize and the Special Filter. For the Threshold, we could change the image to become really white or we could change the image to become really black. We could change the color channel up to the maximum of one or we could change the color channel down to minimum of zero based on whether the pixel’s value is greater or less than the GLUI input values. Then, for the adjust saturation, we could make the image become the black and white image, difference original color image or darker the color image. Another tool is called adjust R, G, B levels. We could change the level of the color red, blue or green. At that time, the image would change to another image with difference image’s color. Right now, we tried with the Quantize tool, we would reduce the number of the color so the image would change to another image. After that, we tried with the Special Filter. For this tool, I tried to create the filter similar to other filters, but I wanted to change the Special Filter a little bit to make it different  looking compared to another filter. 
+</p>
+       <p>For the group three, we tried to use the New Interactive Tools. When the image was loaded from the file, this tool would use that image to place anywhere on the canvas. The image would be very small compared to the canvas, but the users could change the size of the image to whatever they wanted it to be.
+</p>
+       <p>For the group four, we tried to use the Undo/Redo. We saved every operation and we could undo the stack. Then, we made the stack grow until the memory could hold it. The Undo/Redo was very important for each painting program such as PhotoShop, Gimp and Paint.
+</p>
+       <p>The convolution filters implemented in the FlashPhotoApp use an apply Convolution(float Kernel[3][3]) method which has been implemented in the PixelBuffer class together with a Kernel corresponding to the specific filter to produce the desired effect. One of the critical design decisions here were whether to apply the convolution using a 3x3 kernel or a 5x5 kernel.
+</p>
+       <p>We chose to design it using a 3x3 kernel as I had worked out the kernels for the different filters in case of a 3x3 kernel and a 5x5 kernel. We tried out with both size of kernels and though the effect produced by the filter was almost the same, the 5x5 kernel implementation, required significantly more computational power than the 3x3 kernel over a period of time.
+</p>
+       <p>We had a lot of alternatives available while implementing the apply- Convolution() method in the choice of the size of the kernel, but we have figured out from the example comparison between the 3x3 kernel and the 5x5 kernel that the 3x3 kernel is the most efficient as it provides the opportunity for a fast implementation without significant difference in the quality of the effect produced by the filter. 
+</p>
+       <p>In the design of the convolution filters, we had to make another critical decision in the design of the kernel itself, the kernels when changed slightly may produce a very different effect on the image. For example, for the sharpen filter we first saw the effect of applying the left, right, top and bottom sobel filter kernels. Then we tried a lot of different linear combinations of these four kernels of the sobel filters to find an appropriate kernel for the edge-detect filter. Then we added the kernel of the identity filter to the kernel of the edge-detect filter to get an approximately correct kernel for the sharpen filter.
+</p>
+       <p>But then we had a kernel for the sharpen filter which was independent of any value. So, another critical decision here was to decide how the kernel was going to change as the value sharpen amount changed.
+</p>
+       <p>We had a lot of alternatives here we could have added the sharpen amount multiplied by the kernel of the identity filter to the generated kernel, we could have taken the inverse ratio of the sharpen amount and designed the filter taking that as the base ratio instead of 1 or we could just multiply the kernel with the sharpen amount. We chose to do the latter, because the other two produce anonymity in the proportional change of the effect of the kernel as the sharpen amount changed, for example in the method of taking inverse ratios, this proportional change was inverted. 
+</p>
+	</div>
+
+	<div class = "footer">
+		<!-- You can change the copyright! -->
+		<span class="copyright">&copy; 2015, CSCI 3081 Guru</span> 
+	</div>
+
+
+</body>
+</html>
